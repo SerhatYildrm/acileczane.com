@@ -7,6 +7,17 @@ html {
   /* 2 */
 }
 
+
+#spinner {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: url("https://i.pinimg.com/originals/58/4b/60/584b607f5c2ff075429dc0e7b8d142ef.gif")  center  / 100px  no-repeat;
+}
+
 /* Sections
    ========================================================================== */
 /**
@@ -978,5 +989,3 @@ button {
     font-size: 13px;
   }
 }
-
-/*# sourceMappingURL=Searchs_130.css.map */

@@ -5,6 +5,9 @@ $(document).ready(function(){
   
   var first = false;
   
+  $("#spinner").hide();
+  $(document).ajaxStart(function(){ $("#spinner").show(); }).ajaxStop(function(){ $("#spinner").hide();});
+
   $(".btn-search").click(function(e){
     e.preventDefault();
     
@@ -18,18 +21,22 @@ $(document).ready(function(){
     var category = [];
     var group_category = [];
 
-    $.ajax({url: "http://acileczane.herokuapp.com/pharmacy/"+value, success: function(result){
+    $.ajax({url: "http://acileczane.herokuapp.com/pharmacy/"+value, 
+      success: function(result){
       result.map(function(data, index){
         var jData = JSON.parse(data);
 
         var f_city = {'town': findCityandTown(String(jData.Address).toLocaleLowerCase().trim(), String(value).toLocaleLowerCase().trim()) , "index": index};
-        f_city.town = String(f_city.town).replace(/[0-9]/g, '');
+       // f_city.town = String(f_city.town).replace(/[0-9]/g, '');
+       f_city.town = String(f_city.town).replace(/[0-9`~!/@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
         if(f_city.town == ""){
           f_city.town = "Merkez";
         }
         category.push(f_city);
 
-        });
+        }
+        
+        );
 
 
         group_category = category.reduce((r, a) => {
@@ -39,11 +46,7 @@ $(document).ready(function(){
 
          create_div();
         for (var key in group_category) {
-          console.log(key);
-
-          var nkey = String(key).replace(/[0-9`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, "");
-
-
+          var nkey = String(key).replace(/[0-9`~!/@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, "");
             new_row(nkey);
             
             group_category[key].map(function(data){
@@ -82,9 +85,9 @@ $(document).ready(function(){
 
     var add_card = (Name, Phone, Address, id) => {
       $("#"+id).append(
-                  `<div class="card p-1  mb-3" style="max-width: 18rem;">
-                  <div class="card-header bg-success"><h5>`+ Name+ `</h5></div>
-                  <div class="card-body">
+                  `<div class="card col-md-3 p-0 ml-2 mr-3 mt-2" >
+                   <div class="card-header  bg-success"><h5>`+ Name+ `</h5></div>
+                  <div class="card-body ">
                     <h5 class="card-title">`+Phone+`</h5>
                     <p class="card-text"> `+Address+ ` </p>
                   </div>
