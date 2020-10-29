@@ -833,10 +833,7 @@ button {
   -ms-flex-pack: center;
       justify-content: center;
   font-family: 'Poppins', sans-serif;
-  background: url("../images/background.png");
-  background-position: bottom right;
-  background-repeat: no-repeat;
-  background-size: 100%;
+
   padding: 15px;
 }
 
