@@ -15,7 +15,7 @@ html {
   right: 0;
   top: 0;
   bottom: 0;
-  background: url("https://i.pinimg.com/originals/58/4b/60/584b607f5c2ff075429dc0e7b8d142ef.gif")  center  / 100px  no-repeat;
+  background: url("../spinner.gif") center  / 100px  no-repeat;
 }
 
 /* Sections
